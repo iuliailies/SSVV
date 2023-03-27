@@ -14,13 +14,16 @@ public class StudentValidator implements Validator<Student> {
         if(entity.getID().equals("")){
             throw new ValidationException("Id incorect!");
         }
+        if(!entity.getID().matches("[0-9]+")){
+            throw new ValidationException("Id incorect!It should contain only digits!");
+        }
         if(entity.getID() == null){
             throw new ValidationException("Id incorect!");
         }
         if(entity.getNume() == ""){
             throw new ValidationException("Nume incorect!");
         }
-        if(entity.getGrupa() < 0) {
+        if(entity.getGrupa() < 111 || entity.getGrupa() > 999) {
             throw new ValidationException("Grupa incorecta!");
         }
         if(entity.getEmail() == null){
@@ -30,6 +33,9 @@ public class StudentValidator implements Validator<Student> {
             throw new ValidationException("Nume incorect!");
         }
         if(entity.getEmail().equals("")){
+            throw new ValidationException("Email incorect!");
+        }
+        if(!entity.getEmail().matches("^(.+)@(\\S+)$")){
             throw new ValidationException("Email incorect!");
         }
     }
