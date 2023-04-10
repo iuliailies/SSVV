@@ -60,10 +60,11 @@ public class Service {
      */
     public Student addStudent(Student student) throws ValidationException {
         studentValidator.validate(student);
-        if(studentFileRepository.save(student) != null) {
+        Student saved = studentFileRepository.save(student);
+        if(saved != null) {
             throw new ValidationException("Student with existing id!");
         }
-        return studentFileRepository.save(student);
+        return saved;
     }
 
     /**
@@ -177,7 +178,7 @@ public class Service {
             }
         }
         notaFileRepository.save(nota);
-        String filename = "fisiere/" + student.getNume() + ".txt";
+        String filename = "src/test/resources/" + student.getNume() + ".txt";
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename, true))){
             bufferedWriter.write("\nTema: " + tema.getID());
             bufferedWriter.write("\nNota: " + nota.getNota());

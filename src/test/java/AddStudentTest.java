@@ -44,11 +44,12 @@ class AddStudentTest {
                          "</Entities>");
 
          pw.close();
+         service.getAllStudenti();
      }
 
     @Test
     void addStudentNormal_test() {
-        Student student = new Student("100", "Iulia", 934, "mail@mail.com");
+        Student student = new Student("101", "Iulia", 934, "mail@mail.com");
         assertNull(service.addStudent(student));
     }
 

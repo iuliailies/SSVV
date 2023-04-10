@@ -133,6 +133,12 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
 
     }
 
+    @Override
+    public Iterable<E> findAll() {
+        loadFromFile();
+        return this.elemente.values();
+    }
+
 
     /**
      * Sterge un obiect
