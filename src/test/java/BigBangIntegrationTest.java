@@ -72,13 +72,13 @@ public class BigBangIntegrationTest {
 
     @Test
     void addStudentNormal_test() {
-        Student student = new Student("100", "Iulia", 934, "mail@mail.com");
+        Student student = new Student("105", "Iulia", 934, "mail@mail.com");
         assertNull(service.addStudent(student));
     }
 
     @Test
     void addAssignment_test() {
-        Tema tema = new Tema("5", "description", 6, 5);
+        Tema tema = new Tema("10", "description", 6, 5);
         assertNull(service.addTema(tema));
     }
 
@@ -96,7 +96,7 @@ public class BigBangIntegrationTest {
         Tema tema = new Tema("15", "description", 6, 5);
         String[] date = "2018-11-16".split("-");
         LocalDate dataPredare = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
-        Nota nota = new Nota("2", student.getID(), tema.getID(), 9.5, dataPredare);
+        Nota nota = new Nota("3", student.getID(), tema.getID(), 9.5, dataPredare);
         service.addStudent(student);
         service.addTema(tema);
         assertNull(service.addNota(nota, "some feedback"));
