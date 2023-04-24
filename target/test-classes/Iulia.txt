@@ -16,9 +16,3 @@ Nota: 7.0
 Predata in saptamana: 7
 Deadline: 6
 Feedback: some feedback
-
-Tema: 17
-Nota: 7.0
-Predata in saptamana: 7
-Deadline: 6
-Feedback: some feedback
