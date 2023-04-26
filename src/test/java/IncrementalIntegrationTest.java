@@ -14,8 +14,14 @@ import validation.StudentValidator;
 import validation.TemaValidator;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -35,7 +41,7 @@ public class IncrementalIntegrationTest {
 
     @Test
     void addStudent_test() {
-        Student student = new Student("105", "Iulia", 934, "mail@mail.com");
+        Student student = new Student("133", "Iulia", 934, "mail@mail.com");
         assertNull(service.addStudent(student));
     }
 

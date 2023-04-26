@@ -1,4 +1,5 @@
 import domain.Student;
+import domain.Tema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.NotaXMLRepo;
@@ -68,6 +69,39 @@ public class RepoMocksTest {
         assertNull(service.addStudent(student));
 
         Path file = Paths.get("src/test/resources/testStudents.xml");
+        Files.write(file, Collections.singletonList("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><inbox></inbox>"), StandardCharsets.UTF_8);
+    }
+
+    @Test
+    void addAssignment_allStubs() {
+        Tema tema = new Tema("22", "description", 6, 5);
+        when(studentXMLRepository.save(any())).thenReturn(null);
+        assertNull(service.addTema(tema));
+
+        verify(temaValidator).validate(any());
+        verify(temaXMLRepository).save(any());
+    }
+
+    @Test
+    void addAssignment_repoStub() {
+        TemaValidator temaValidatorReal = new TemaValidator();
+        service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidatorReal, notaXMLRepository, notaValidator);
+        Tema tema = new Tema("23", "description", 6, 5);
+        service.addTema(tema);
+        verify(temaXMLRepository).save(any());
+    }
+
+    @Test
+    void addAssignment_noStub() throws IOException {
+        TemaValidator temaValidatorReal = new TemaValidator();
+        String filenameStudent = "src/test/resources/testStudents.xml";
+        TemaXMLRepo temaXMLRepositoryReal = new TemaXMLRepo(filenameStudent);
+
+        service = new Service(studentXMLRepository, studentValidator, temaXMLRepositoryReal, temaValidatorReal, notaXMLRepository, notaValidator);
+        Tema tema = new Tema("23", "description", 6, 5);
+        assertNull(service.addTema(tema));
+
+        Path file = Paths.get("src/test/resources/testAssignments.xml");
         Files.write(file, Collections.singletonList("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><inbox></inbox>"), StandardCharsets.UTF_8);
     }
 }
